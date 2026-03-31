@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameFusionX | Target Shooting Game</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body data-music-theme="shooting">
+    <main class="game-shell">
+        <header class="panel page-header">
+            <a class="back-link" href="{{ url_for('home') }}">← Back to Home</a>
+            <div>
+                <p class="badge">Game 4</p>
+                <h1>{{ game.title }}</h1>
+                <p class="subtitle">{{ game.subtitle }} Tap or click targets before the countdown ends to post your best score.</p>
+            </div>
+        </header>
+
+        <section class="game-layout">
+            <aside class="panel side-panel">
+                <div class="field-group">
+                    <label for="playerName">Player name</label>
+                    <input id="playerName" type="text" maxlength="20" placeholder="Enter your name" value="Player" />
+                </div>
+
+                <div class="field-group">
+                    <label for="difficultySelect">Difficulty</label>
+                    <select id="difficultySelect">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="controls-box">
+                    <h2>How to play</h2>
+                    <ul>
+                        <li>Click or tap the moving targets to score</li>
+                        <li>Difficulty changes target speed and count</li>
+                        <li>You have a limited timer for each round</li>
+                        <li>Press restart anytime for a new attempt</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <section class="panel main-panel">
+                <div class="hud-grid">
+                    <div class="hud-card">
+                        <span class="hud-label">Score</span>
+                        <span id="scoreValue" class="hud-number">0</span>
+                    </div>
+                    <div class="hud-card">
+                        <span class="hud-label">Time Left</span>
+                        <span id="statusValue" class="hud-number small-number">30.0s</span>
+                    </div>
+                    <div class="hud-card">
+                        <span class="hud-label">Best</span>
+                        <span id="bestScore" class="hud-number">0</span>
+                    </div>
+                </div>
+
+                <div class="toolbar">
+                    <p class="toolbar-note">More difficult modes spawn faster, smaller targets.</p>
+                    <div class="hero-actions">
+                        <button id="restartButtonTop" class="secondary-btn" type="button">Restart Round</button>
+                        <button id="soundToggle" class="secondary-btn" type="button">🔊 Sound On</button>
+                    </div>
+                </div>
+
+                <div class="game-wrapper">
+                    <canvas id="gameCanvas" width="360" height="600"></canvas>
+
+                    <div id="gameOverScreen" class="overlay hidden">
+                        <h2>Time Up</h2>
+                        <p>Your final score: <span id="finalScore">0</span></p>
+                        <button id="restartButton" class="primary-btn" type="button">Play Again</button>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="panel leaderboard-panel">
+                <h2>Shooting Leaderboard</h2>
+                <p class="subtitle small">Scores are stored by the Flask backend for this game only.</p>
+                <ol id="leaderboardList" class="leaderboard-list">
+                    <li>Loading scores...</li>
+                </ol>
+            </aside>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/bg-music.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/shooting.js') }}"></script>
+</body>
+</html>

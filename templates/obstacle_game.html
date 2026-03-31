@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameFusionX | Obstacle Avoidance Game</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body data-music-theme="obstacle">
+    <main class="game-shell">
+        <header class="panel page-header">
+            <a class="back-link" href="{{ url_for('home') }}">← Back to Home</a>
+            <div>
+                <p class="badge">Game 6</p>
+                <h1>{{ game.title }}</h1>
+                <p class="subtitle">{{ game.subtitle }} Move left and right, jump over danger, and survive as long as possible.</p>
+            </div>
+        </header>
+
+        <section class="game-layout">
+            <aside class="panel side-panel">
+                <div class="field-group">
+                    <label for="playerName">Player name</label>
+                    <input id="playerName" type="text" maxlength="20" placeholder="Enter your name" value="Player" />
+                </div>
+
+                <div class="field-group">
+                    <p class="label">Runner color</p>
+                    <div class="skin-picker">
+                        <button class="skin-btn active" data-color="#38bdf8" style="--skin:#38bdf8" type="button">Blue</button>
+                        <button class="skin-btn" data-color="#ef4444" style="--skin:#ef4444" type="button">Red</button>
+                        <button class="skin-btn" data-color="#22c55e" style="--skin:#22c55e" type="button">Green</button>
+                        <button class="skin-btn" data-color="#f59e0b" style="--skin:#f59e0b" type="button">Gold</button>
+                    </div>
+                </div>
+
+                <div class="controls-box">
+                    <h2>Controls</h2>
+                    <ul>
+                        <li><strong>← / →</strong> or <strong>A / D</strong> to move</li>
+                        <li><strong>↑ / W / Space</strong> to jump</li>
+                        <li><strong>P</strong> to pause or resume</li>
+                        <li>Avoid blades, hammers, lasers, fire, and spikes</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <section class="panel main-panel">
+                <div class="hud-grid">
+                    <div class="hud-card">
+                        <span class="hud-label">Score</span>
+                        <span id="scoreValue" class="hud-number">0</span>
+                    </div>
+                    <div class="hud-card">
+                        <span class="hud-label">Lives</span>
+                        <span id="livesValue" class="hud-number">3</span>
+                    </div>
+                    <div class="hud-card">
+                        <span class="hud-label">Best</span>
+                        <span id="bestScore" class="hud-number">0</span>
+                    </div>
+                </div>
+
+                <div class="toolbar">
+                    <p id="statusValue" class="toolbar-note">Survive longer as the trap speed increases.</p>
+                    <div class="hero-actions">
+                        <button id="pauseButton" class="secondary-btn" type="button">⏸ Pause</button>
+                        <button id="soundToggle" class="secondary-btn" type="button">🔊 Sound On</button>
+                    </div>
+                </div>
+
+                <div class="game-wrapper">
+                    <canvas id="gameCanvas" width="360" height="600"></canvas>
+
+                    <div id="gameOverScreen" class="overlay hidden">
+                        <h2>Game Over</h2>
+                        <p>Your survival score: <span id="finalScore">0</span></p>
+                        <button id="restartButton" class="primary-btn" type="button">Restart Run</button>
+                    </div>
+                </div>
+
+                <div class="touch-controls">
+                    <button id="leftButton" type="button">⬅ Left</button>
+                    <button id="jumpButton" type="button">⤒ Jump</button>
+                    <button id="rightButton" type="button">Right ➡</button>
+                </div>
+            </section>
+
+            <aside class="panel leaderboard-panel">
+                <h2>Obstacle Leaderboard</h2>
+                <p class="subtitle small">Saved with the Flask backend in JSON format.</p>
+                <ol id="leaderboardList" class="leaderboard-list">
+                    <li>Loading scores...</li>
+                </ol>
+            </aside>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/bg-music.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/obstacle.js') }}"></script>
+</body>
+</html>

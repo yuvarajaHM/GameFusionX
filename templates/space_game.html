@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameFusionX | Space Shooter Game</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body data-music-theme="space">
+    <main class="game-shell">
+        <header class="panel page-header">
+            <a class="back-link" href="{{ url_for('home') }}">← Back to Home</a>
+            <div>
+                <p class="badge">Game 5</p>
+                <h1>{{ game.title }}</h1>
+                <p class="subtitle">{{ game.subtitle }} Move with the arrow keys and press spacebar to fire neon shots upward.</p>
+            </div>
+        </header>
+
+        <section class="game-layout">
+            <aside class="panel side-panel">
+                <div class="field-group">
+                    <label for="playerName">Player name</label>
+                    <input id="playerName" type="text" maxlength="20" placeholder="Enter your name" value="Player" />
+                </div>
+
+                <div class="controls-box">
+                    <h2>Controls</h2>
+                    <ul>
+                        <li><strong>← / →</strong> or <strong>A / D</strong> to move</li>
+                        <li><strong>Space</strong> to shoot</li>
+                        <li>Clear every alien to win the round</li>
+                        <li>Avoid enemy shots and don't let aliens reach the bottom</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <section class="panel main-panel">
+                <div class="hud-grid">
+                    <div class="hud-card">
+                        <span class="hud-label">Score</span>
+                        <span id="scoreValue" class="hud-number">0</span>
+                    </div>
+                    <div class="hud-card">
+                        <span class="hud-label">Lives</span>
+                        <span id="livesValue" class="hud-number">3</span>
+                    </div>
+                    <div class="hud-card">
+                        <span class="hud-label">Status</span>
+                        <span id="statusValue" class="hud-number small-number">Ready</span>
+                    </div>
+                </div>
+
+                <div class="toolbar">
+                    <p class="toolbar-note">Retro neon arcade action with glowing bullets and explosion bursts.</p>
+                    <button id="soundToggle" class="secondary-btn" type="button">🔊 Sound On</button>
+                </div>
+
+                <div class="game-wrapper">
+                    <canvas id="gameCanvas" width="420" height="600"></canvas>
+
+                    <div id="gameOverScreen" class="overlay hidden">
+                        <h2 id="overlayTitle">Game Over</h2>
+                        <p>Your final score: <span id="finalScore">0</span></p>
+                        <button id="restartButton" class="primary-btn" type="button">Restart Mission</button>
+                    </div>
+                </div>
+
+                <div class="touch-controls">
+                    <button id="leftButton" type="button">⬅ Left</button>
+                    <button id="shootButton" type="button">🚀 Shoot</button>
+                    <button id="rightButton" type="button">Right ➡</button>
+                </div>
+            </section>
+
+            <aside class="panel leaderboard-panel">
+                <h2>Space Leaderboard</h2>
+                <p class="subtitle small">Top scores are stored by the Flask backend.</p>
+                <ol id="leaderboardList" class="leaderboard-list">
+                    <li>Loading scores...</li>
+                </ol>
+            </aside>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/bg-music.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/space.js') }}"></script>
+</body>
+</html>

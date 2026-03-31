@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameFusionX | Flask Multi-Game Arcade</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+    <main class="dashboard">
+        <section class="panel hero">
+            <p class="badge">GameFusionX</p>
+            <h1>Welcome to GameFusionX</h1>
+            <p class="subtitle">
+                Pick a mini-game, play right in the browser, and save your score to a separate leaderboard for each game.
+            </p>
+            <div class="hero-actions">
+                <a class="primary-btn" href="{{ url_for('car_game') }}">Play Car Racing</a>
+                <a class="secondary-btn" href="{{ url_for('bike_game') }}">Play Bike Riding</a>
+                <a class="secondary-btn" href="{{ url_for('tower_game') }}">Play Tower Climb</a>
+                <a class="secondary-btn" href="{{ url_for('shooting_game') }}">Play Shooting Game</a>
+                <a class="secondary-btn" href="{{ url_for('space_game') }}">Play Space Shooter</a>
+                <a class="secondary-btn" href="{{ url_for('obstacle_game') }}">Play Obstacle Run</a>
+            </div>
+        </section>
+
+        <section class="dashboard-grid">
+            <article class="panel game-card car-card">
+                <div class="game-card-art car-art" aria-hidden="true"><span>🏎️</span></div>
+                <p class="badge">Game 1</p>
+                <h2>Car Racing Game</h2>
+                <p class="subtitle">Steer left and right, dodge moving traffic, and survive the rising speed.</p>
+                <ul class="feature-list">
+                    <li>Arrow-key movement and mobile touch controls</li>
+                    <li>Enemy cars weave down the road</li>
+                    <li>Automatic score saving on game over</li>
+                </ul>
+                <a class="primary-btn" href="{{ url_for('car_game') }}">Open Car Game</a>
+            </article>
+
+            <article class="panel game-card bike-card">
+                <div class="game-card-art bike-art" aria-hidden="true"><span>🏍️</span></div>
+                <p class="badge">Game 2</p>
+                <h2>Bike Riding Game</h2>
+                <p class="subtitle">Ride fast, jump over barriers, and collect speed boards for a temporary boost.</p>
+                <ul class="feature-list">
+                    <li>Left/right movement plus jump mechanics</li>
+                    <li>Boost boards increase speed for a short time</li>
+                    <li>Distance-based scoring with leaderboard support</li>
+                </ul>
+                <a class="primary-btn" href="{{ url_for('bike_game') }}">Open Bike Game</a>
+            </article>
+
+            <article class="panel game-card tower-card">
+                <div class="game-card-art tower-art" aria-hidden="true"><span>🧗</span></div>
+                <p class="badge">Game 3</p>
+                <h2>Tower Climbing Game</h2>
+                <p class="subtitle">Bounce upward on platforms, dodge the fall, and keep climbing for a higher score.</p>
+                <ul class="feature-list">
+                    <li>Gravity-based jumping and platform landing</li>
+                    <li>Moving platforms for extra challenge</li>
+                    <li>Height-based scoring with separate leaderboard</li>
+                </ul>
+                <a class="primary-btn" href="{{ url_for('tower_game') }}">Open Tower Game</a>
+            </article>
+
+            <article class="panel game-card shooting-card">
+                <div class="game-card-art shooting-art" aria-hidden="true"><span>🎯</span></div>
+                <p class="badge">Game 4</p>
+                <h2>Target Shooting Game</h2>
+                <p class="subtitle">Click fast-moving targets before time runs out and choose a difficulty level for extra challenge.</p>
+                <ul class="feature-list">
+                    <li>Random moving targets with mouse/touch aiming</li>
+                    <li>Difficulty modes that change speed and target count</li>
+                    <li>Countdown timer and separate Flask leaderboard</li>
+                </ul>
+                <a class="primary-btn" href="{{ url_for('shooting_game') }}">Open Shooting Game</a>
+            </article>
+
+            <article class="panel game-card space-card">
+                <div class="game-card-art space-art" aria-hidden="true"><span>🚀</span></div>
+                <p class="badge">Game 5</p>
+                <h2>Space Shooter Game</h2>
+                <p class="subtitle">Pilot a neon spaceship, fire upward, and destroy the alien fleet before it reaches the bottom.</p>
+                <ul class="feature-list">
+                    <li>Arrow-key movement and spacebar shooting</li>
+                    <li>Retro alien rows with different point values</li>
+                    <li>Lives, explosions, and Flask leaderboard support</li>
+                </ul>
+                <a class="primary-btn" href="{{ url_for('space_game') }}">Open Space Shooter</a>
+            </article>
+
+            <article class="panel game-card obstacle-card">
+                <div class="game-card-art obstacle-art" aria-hidden="true"><span>🔥</span></div>
+                <p class="badge">Game 6</p>
+                <h2>Obstacle Avoidance Game</h2>
+                <p class="subtitle">Run, jump, and dodge spinning blades, fire traps, laser beams, and swinging hammers.</p>
+                <ul class="feature-list">
+                    <li>Jump physics with lives and pause support</li>
+                    <li>Random cartoon-style hazards with rising speed</li>
+                    <li>Survival score saved to a separate leaderboard</li>
+                </ul>
+                <a class="primary-btn" href="{{ url_for('obstacle_game') }}">Open Obstacle Game</a>
+            </article>
+        </section>
+    </main>
+</body>
+</html>

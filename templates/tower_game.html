@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameFusionX | Tower Climbing Game</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body data-music-theme="tower">
+    <main class="game-shell">
+        <header class="panel page-header">
+            <a class="back-link" href="{{ url_for('home') }}">← Back to Home</a>
+            <div>
+                <p class="badge">Game 3</p>
+                <h1>{{ game.title }}</h1>
+                <p class="subtitle">{{ game.subtitle }} Use left and right movement to land on platforms and avoid falling off the screen.</p>
+            </div>
+        </header>
+
+        <section class="game-layout">
+            <aside class="panel side-panel">
+                <div class="field-group">
+                    <label for="playerName">Player name</label>
+                    <input id="playerName" type="text" maxlength="20" placeholder="Enter your name" value="Player" />
+                </div>
+
+                <div class="field-group">
+                    <p class="label">Climber color</p>
+                    <div class="skin-picker">
+                        <button class="skin-btn active" data-color="#a855f7" style="--skin:#a855f7" type="button">Purple</button>
+                        <button class="skin-btn" data-color="#38bdf8" style="--skin:#38bdf8" type="button">Blue</button>
+                        <button class="skin-btn" data-color="#22c55e" style="--skin:#22c55e" type="button">Green</button>
+                        <button class="skin-btn" data-color="#f59e0b" style="--skin:#f59e0b" type="button">Gold</button>
+                    </div>
+                </div>
+
+                <div class="controls-box">
+                    <h2>Controls</h2>
+                    <ul>
+                        <li><strong>← / →</strong> or <strong>A / D</strong> to move</li>
+                        <li>Jump happens automatically when you land</li>
+                        <li>Green moving platforms drift sideways</li>
+                        <li>Falling below the screen ends the run</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <section class="panel main-panel">
+                <div class="hud-grid">
+                    <div class="hud-card">
+                        <span class="hud-label">Height</span>
+                        <span id="scoreValue" class="hud-number">0</span>
+                    </div>
+                    <div class="hud-card">
+                        <span class="hud-label">Best</span>
+                        <span id="bestScore" class="hud-number">0</span>
+                    </div>
+                    <div class="hud-card">
+                        <span class="hud-label">Status</span>
+                        <span id="statusValue" class="hud-number small-number">Climbing</span>
+                    </div>
+                </div>
+
+                <div class="toolbar">
+                    <p class="toolbar-note">Moving platforms appear more often as your score increases.</p>
+                    <button id="soundToggle" class="secondary-btn" type="button">🔊 Sound On</button>
+                </div>
+
+                <div class="game-wrapper">
+                    <canvas id="gameCanvas" width="360" height="600"></canvas>
+
+                    <div id="gameOverScreen" class="overlay hidden">
+                        <h2>Game Over</h2>
+                        <p>Your final height: <span id="finalScore">0</span></p>
+                        <button id="restartButton" class="primary-btn" type="button">Restart Climb</button>
+                    </div>
+                </div>
+
+                <div class="touch-controls">
+                    <button id="leftButton" type="button">⬅ Left</button>
+                    <button id="rightButton" type="button">Right ➡</button>
+                </div>
+            </section>
+
+            <aside class="panel leaderboard-panel">
+                <h2>Tower Leaderboard</h2>
+                <p class="subtitle small">Saved separately using the same Flask JSON API.</p>
+                <ol id="leaderboardList" class="leaderboard-list">
+                    <li>Loading scores...</li>
+                </ol>
+            </aside>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/bg-music.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tower.js') }}"></script>
+</body>
+</html>

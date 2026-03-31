@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameFusionX | Bike Riding Game</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body data-music-theme="bike">
+    <main class="game-shell">
+        <header class="panel page-header">
+            <a class="back-link" href="{{ url_for('home') }}">← Back to Home</a>
+            <div>
+                <p class="badge">Game 2</p>
+                <h1>{{ game.title }}</h1>
+                <p class="subtitle">{{ game.subtitle }} Jump over hazards and grab boost boards for a burst of speed.</p>
+            </div>
+        </header>
+
+        <section class="game-layout">
+            <aside class="panel side-panel">
+                <div class="field-group">
+                    <label for="playerName">Player name</label>
+                    <input id="playerName" type="text" maxlength="20" placeholder="Enter your name" value="Player" />
+                </div>
+
+                <div class="field-group">
+                    <p class="label">Bike skin</p>
+                    <div class="skin-picker">
+                        <button class="skin-btn active" data-color="#22c55e" style="--skin:#22c55e" type="button">Green</button>
+                        <button class="skin-btn" data-color="#38bdf8" style="--skin:#38bdf8" type="button">Blue</button>
+                        <button class="skin-btn" data-color="#ef4444" style="--skin:#ef4444" type="button">Red</button>
+                        <button class="skin-btn" data-color="#a855f7" style="--skin:#a855f7" type="button">Purple</button>
+                    </div>
+                </div>
+
+                <div class="controls-box">
+                    <h2>Controls</h2>
+                    <ul>
+                        <li><strong>← / →</strong> or <strong>A / D</strong> to move</li>
+                        <li><strong>↑ / Space</strong> to jump over barriers</li>
+                        <li>Collect yellow speed boards for a short boost</li>
+                        <li>Distance traveled becomes your score</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <section class="panel main-panel">
+                <div class="hud-grid">
+                    <div class="hud-card">
+                        <span class="hud-label">Distance</span>
+                        <span id="scoreValue" class="hud-number">0</span>
+                    </div>
+                    <div class="hud-card">
+                        <span class="hud-label">Best</span>
+                        <span id="bestScore" class="hud-number">0</span>
+                    </div>
+                    <div class="hud-card">
+                        <span class="hud-label">Boost</span>
+                        <span id="statusValue" class="hud-number small-number">Ready</span>
+                    </div>
+                </div>
+
+                <div class="toolbar">
+                    <p class="toolbar-note">Speed boards give a temporary acceleration boost.</p>
+                    <button id="soundToggle" class="secondary-btn" type="button">🔊 Sound On</button>
+                </div>
+
+                <div class="game-wrapper">
+                    <canvas id="gameCanvas" width="360" height="600"></canvas>
+
+                    <div id="gameOverScreen" class="overlay hidden">
+                        <h2>Ride Over</h2>
+                        <p>Your final distance: <span id="finalScore">0</span></p>
+                        <button id="restartButton" class="primary-btn" type="button">Restart Ride</button>
+                    </div>
+                </div>
+
+                <div class="touch-controls">
+                    <button id="leftButton" type="button">⬅ Left</button>
+                    <button id="jumpButton" type="button">⤒ Jump</button>
+                    <button id="rightButton" type="button">Right ➡</button>
+                </div>
+            </section>
+
+            <aside class="panel leaderboard-panel">
+                <h2>Bike Leaderboard</h2>
+                <p class="subtitle small">Saved separately from the car game.</p>
+                <ol id="leaderboardList" class="leaderboard-list">
+                    <li>Loading scores...</li>
+                </ol>
+            </aside>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/bg-music.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bike.js') }}"></script>
+</body>
+</html>
